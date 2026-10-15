@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://npcodingrepos.github.io/star-apps-site/sitemap.xml
