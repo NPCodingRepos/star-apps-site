@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Join me on Startell Media</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="A training partner or a friendly challenge on Startell Media, the camera coach for creators.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600&family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0B0B10;--card:#16161E;--ink:#F6F3EE;--muted:rgba(246,243,238,.68);--acc:#E9B44C;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 'Plus Jakarta Sans',system-ui,sans-serif;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px}
+main{max-width:440px;width:100%;text-align:center}
+h1{font:600 26px/1.25 Unbounded,system-ui,sans-serif;margin:18px 0 10px;text-wrap:balance}
+p{color:var(--muted);margin:0 0 18px}
+.star{width:72px;height:72px;margin:0 auto;border-radius:18px;background:radial-gradient(circle at 30% 25%,#3a2a12,#0d0b08);display:grid;place-items:center;font-size:38px;color:var(--acc)}
+a.btn{display:block;padding:15px 18px;border-radius:14px;font-weight:700;text-decoration:none;margin:10px 0}
+a.primary{background:linear-gradient(120deg,#F2D79A,#E9B44C,#B07A2A);color:#1A1206}
+a.store{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+.fine{font-size:13px;margin-top:20px}
+</style></head><body><main>
+<div class="star" aria-hidden="true">★</div>
+<h1 id="title">Join me on Startell Media</h1>
+<p id="lead">A camera coach for creators: short drills, a coach after every take, and your STAR score.</p>
+<a class="btn primary" id="open" href="#">Open in Startell Media</a>
+<a class="btn store" href="https://apps.apple.com/app/id1447417033">Get it on the App Store</a>
+<a class="btn store" href="https://play.google.com/store/apps/details?id=com.starbox.android">Get it on Google Play</a>
+<p class="fine">Install the app, then come back to this page and tap "Open in Startell Media". Only nicknames and scores are shared between partners, never videos.</p>
+</main>
+<script>
+// ?f=CODE&n=NAME (training partner) or ?d=ID (challenge): hand the link to the app when it is installed
+var q = new URLSearchParams(location.search), app = null;
+var ok = function (s) { return /^[A-Za-z0-9]{24,64}$/.test(s || ''); };
+if (ok(q.get('f'))) {
+  var n = (q.get('n') || 'A friend').slice(0, 20);
+  document.getElementById('title').textContent = n + ' wants to train with you';
+  document.getElementById('lead').textContent = 'Add ' + n + ' as a training partner on Startell Media and see each other’s progress.';
+  app = 'startell://friend?c=' + q.get('f') + '&n=' + encodeURIComponent(n);
+} else if (ok(q.get('d'))) {
+  document.getElementById('title').textContent = 'You have been challenged';
+  document.getElementById('lead').textContent = 'Same drill, same rules. Film yours in Startell Media and see who scores higher.';
+  app = 'startell://duel?d=' + q.get('d');
+}
+var btn = document.getElementById('open');
+if (app) { btn.href = app; setTimeout(function () { location.href = app; }, 300); } else { btn.style.display = 'none'; }
+</script>
+</body></html>
